@@ -1,6 +1,5 @@
-
 %   AMP detection in Massive MIMO
-%   written by Shanxiang Lyu (s.lyu14@imperial.ac.uk), Imperial College
+%   written by Shanxiang Lyu (shanxianglyu@gmail.com), was with Imperial College, now with Jinan University
 %   Last updated on oct 2018
 %   Ref: "Hybrid Vector Perturbation Precoding: The Blessing of Approximate Message Passing,", IEEE Transactions on Signal Processing 
 %   Digital Object Identifier: 10.1109/TSP.2018.2877205

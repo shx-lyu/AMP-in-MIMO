@@ -10,6 +10,10 @@ main_AMPG_LMMSE.m: the stand-alone main file that plots the BER performance of A
 
 main_massive_detection.m: the main file that compares the BER performance of hybrid decoding with LMMSE and AMPG, where hybrid decoding can be performed by either using LMMSE+AMPG or LMMSE+AMPT.
 
+![main_AMPG_LMMSE](FIG1-BER.jpg)
+
+![main_massive_detection](FIG2-BER.jpg)
+
 # Copyright
 If you use our codes in your research, please acknowledge our work by citing the following paper:
 

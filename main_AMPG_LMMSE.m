@@ -20,7 +20,7 @@ SNRdb=s;
     %iterAMP is # of iterations in AMP
     iterAMP1=2;
     xhat1=AMP(y,H,sigma2,sigmas2,iterAMP1,m,n);
-     iterAMP2=4;
+    iterAMP2=4;
     xhat2=AMP(y,H,sigma2,sigmas2,iterAMP2,m,n);
 
      x_mmse=(sigma2/sigmas2*eye(n)+H'*H)^(-1)*H'*y;
@@ -39,7 +39,7 @@ semilogy(SNRrange,serAMP1,'-+r', SNRrange,serAMP2,'-pk',SNRrange, serMMSE,'-ob')
 grid on;
 legend(['AMP iteration=' int2str(iterAMP1)], ['AMP iteration=' int2str(iterAMP2)], 'MMSE');
 xlabel('SNR (dB)'); ylabel('SER');
-title(['BER performance comparison in system m= ' int2str(m)  '  n=' int2str(n)]);
+title(['SER performance comparison in a system of size m= ' int2str(m)  '  n=' int2str(n)]);
 end
 function xhat=AMP(y,H,sigma2,sigmas2,iterAMP,m,n)
 %   AMP detector in Massive MIMO

@@ -1,31 +1,37 @@
 # AMP-in-MIMO
-Approximate Message Passing (AMP) for Massive MIMO Detection
+**Approximate Message Passing (AMP) for Massive MIMO Detection**
 
-# File Description
-AMPG.m: the AMP algorithm using Gaussian distributions on the prior symbols.
+## File Descriptions
 
-AMPT.m: the AMP algorithm using {0,1,-1} on the prior symbols.
+- **AMPG.m:** Implements the AMP algorithm using Gaussian distributions for the prior symbols.
 
-main_AMPG_LMMSE.m: the stand-alone main file that plots the symbol error rate (SER) performance of AMPG and linear MMSE (LMMSE).
+- **AMPT.m:** Implements the AMP algorithm using the discrete set {0,1,-1} for the prior symbols.
 
-main_massive_detection.m: the main file that compares the SER performance of hybrid decoding with LMMSE and AMPG, where hybrid decoding can be performed by either using LMMSE+AMPG or LMMSE+AMPT.
+- **main_AMPG_LMMSE.m:** A stand-alone script that plots the Symbol Error Rate (SER) performance of the AMPG algorithm and Linear MMSE (LMMSE) detection.
 
-![main_AMPG_LMMSE](FIG1-SER.jpg)
-![main_massive_detection](FIG2-SER.jpg)
+- **main_massive_detection.m:** The main script comparing the SER performance of hybrid decoding methods using LMMSE combined with AMPG or AMPT.
 
-# Copyright
-If you use our codes in your research, please acknowledge our work by citing the following paper:
+![SER Performance of AMPG vs LMMSE](FIG1-SER.jpg)
+![SER Performance of Hybrid Decoding](FIG2-SER.jpg)
 
-Shanxiang Lyu, Cong Ling: Hybrid Vector Perturbation Precoding: The Blessing of Approximate Message Passing. IEEE Trans. Signal Process. 67(1): 178-193 (2019).
+## Copyright
+If you use these codes in your research, please acknowledge our work by citing the following paper:
 
-# Maintainer
-Shanxiang Lyu
+Shanxiang Lyu, Cong Ling: *Hybrid Vector Perturbation Precoding: The Blessing of Approximate Message Passing*. IEEE Trans. Signal Process. 67(1): 178-193 (2019).
 
-Associate Professor, Jinan University, Guangzhou
+## Maintainer
 
-Email: shanxianglyu@gmail.com
+- **Shanxiang Lyu**  
+  Associate Professor, Jinan University, Guangzhou  
+  Email: [shanxianglyu@gmail.com](mailto:shanxianglyu@gmail.com)  
+  Homepage: [https://sites.google.com/view/shanx](https://sites.google.com/view/shanx)
 
-Homepage: https://sites.google.com/view/shanx
+## History
 
-# History
-These files were posted on my personal website (http://www.commsp.ee.ic.ac.uk/~slyu/approximate-message-passing-amp-for-massive-mimo-detection-matlab-codes-provided/index.html, edition-1) and MATHWORK (https://www.mathworks.com/matlabcentral/fileexchange/69206-approximate-message-passing-amp-for-massive-mimo-detection, edition-2). When I started my PhD in 2014, one of my research projects was to apply the AMP algorithm to solve the closest vector problem (CVP) of lattices, in which the popular MIMO detection problem is no more than a special case of CVP. The initial attempt was to understand the technical paper that I noted as BM11 ("The dynamics of message passing on dense graphs, with applications to compressed sensing", Mohsen Bayati AND Andrea Montanari, IEEE TIT, 2011). Later I tried to simplify Belief Propagation to derive the set of equations used in AMP (see Sec. IV in "Hybrid Vector Perturbation Precoding: The Blessing of Approximate Message Passing", S. Lyu and C. Ling, IEEE TSP, 2019). Regardless of the versions of AMP, a critical step in MIMO detection is to assign the a priori distribution to the "x" of "y=H*x+n". While in the transmission "x" is admitting a uniform distribution over QAM symbols, in detection we may temporarily assume that "x" admits a Gaussian distribution, and the estimated "x" can be further quantized to obtain discrete QAM symbols. I call the AMP algorithm using this Gaussian prior as AMPG, and this algorithm is surprisingly simple with only 3 lines of codes. While the AMPG algorithm is slightly different with those in BM11, the principles are the same. In addition, Jeon and Studer published their result of using the exact priori in AMP (AMP-exact) in the 2015 ISIT, which certainly outperforms AMPG in the SER performance, so I decided to post the codes (edition-1) on my personal website in 2015. When it comes to 2017, to address the issue that AMP-exact cannot perform well when the range of “x” is large (beyond +-1 and small QAM), I developed a scheme that aims to bypass this constraint. Specially, in a two-step procedure, we first adopt a low-complexity algorithm to temporarily estimate “x”. If this estimate is not too far from the actual “x”, then we can employ AMP with a smaller range of prior symbols. The simplest case is to assign only “0,1,-1” to “x”, and this algorithm is noted as AMPT. While this hybrid decoding algorithm can perform well in MIMO detection, the MIMO precoding problem is actually more general, so I decided to formulate the stuff in the precoding context and submitted it to IEEE TSP. Nevertheless, the application to MIMO detection is still formulated in Section VII of the IEEE TSP 2019 paper.
+These files were originally posted on my personal website and on MATHWORKS. The initial version (edition-1) was made available on my website [here](http://www.commsp.ee.ic.ac.uk/~slyu/approximate-message-passing-amp-for-massive-mimo-detection-matlab-codes-provided/index.html), and edition-2 was uploaded to [MATLAB Central](https://www.mathworks.com/matlabcentral/fileexchange/69206-approximate-message-passing-amp-for-massive-mimo-detection).
+
+The development of this project began during my Ph.D. studies in 2014, where one of my research projects involved applying the AMP algorithm to solve the Closest Vector Problem (CVP) of lattices—a problem that includes the well-known MIMO detection problem as a special case. My initial goal was to understand the technical paper *"The Dynamics of Message Passing on Dense Graphs, with Applications to Compressed Sensing"* by Mohsen Bayati and Andrea Montanari (IEEE TIT, 2011), referred to as BM11. I subsequently derived the set of equations used in AMP by simplifying Belief Propagation, which is detailed in Section IV of the 2019 IEEE TSP paper mentioned above.
+
+Regardless of the AMP version, a critical step in MIMO detection involves assigning the a priori distribution to the vector "x" in the equation "y = H*x + n". While the transmission vector "x" follows a uniform distribution over QAM symbols, for detection, we may assume that "x" follows a Gaussian distribution, which is later quantized to obtain discrete QAM symbols. This approach is implemented in the AMPG algorithm, which is remarkably simple, consisting of only three lines of code. While AMPG slightly differs from the algorithm presented in BM11, the underlying principles remain the same.
+
+In 2015, Jeon and Studer introduced AMP-exact, an algorithm using the exact prior distribution in AMP, which outperforms AMPG in SER performance. I posted the first edition of the codes on my personal website in 2015. By 2017, to address AMP-exact's limitations when the range of “x” is large (e.g., beyond ±1 and for small QAM constellations), I developed a two-step procedure. This method first employs a low-complexity algorithm to estimate "x" and, if the estimate is reasonably accurate, AMP is applied with a reduced range of prior symbols. In the simplest case, this involves using the set {0,1,-1} for "x", leading to the AMPT algorithm. Although this hybrid decoding algorithm performs well in MIMO detection, its application to MIMO precoding is broader, as discussed in Section VII of the IEEE TSP 2019 paper.
